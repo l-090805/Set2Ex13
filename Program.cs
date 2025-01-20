@@ -2,27 +2,39 @@
 {
     internal class Program
     {
-        public static bool EsteCrescatioareRotita(int[] secventa)
-        {
-            int rupturiOrdineCresc = 0;
-
-            for (int i = 0; i < secventa.Length; i++)
-            {
-                if(secventa[i] >  secventa[(i + 1) % secventa.Length])
-                {
-                    rupturiOrdineCresc++;
-                }
-            }
-            return rupturiOrdineCresc <= 1;
-        }
         static void Main(string[] args)
-
         {
-            Console.WriteLine("Introduceti secventa de numere separate prin spatii: ");
-            string input = Console.ReadLine();
-            int[] secventa = Array.ConvertAll(input.Split(' '), int.Parse);
-            bool rezultat = EsteCrescatioareRotita(secventa);
-            Console.WriteLine($"Secventa este crescatoare rotita: {rezultat}");
+            Console.WriteLine("Numarul de elemente din secventa: ");
+            int n = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("introduceti elementele: ");
+            int primulElem = int.Parse(Console.ReadLine());
+            int elementAnt = primulElem;
+            int elemCurent;
+            int rupturi = 0;
+
+            for(int i = 1; i < n; i++)
+            {
+                elemCurent = int.Parse(Console.ReadLine());
+                if(elemCurent < elementAnt)
+                {
+                    rupturi++;
+                }
+                elementAnt = elemCurent;
+            }
+            if (primulElem < elementAnt)
+            {
+                rupturi++;
+            }
+
+            if (rupturi <= 1)
+            {
+                Console.WriteLine("Secventa este crescătoare rotită.");
+            }
+            else
+            {
+                Console.WriteLine("Secventa NU este crescătoare rotită.");
+            }
         }
     }
 }
